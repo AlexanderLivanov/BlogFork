@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://cdn.tiny.cloud/1/qz8i2t9v3yqmvp0hyjlv95kybrn89u3py39nj1efjraq0e9p/tinymce/6/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+  </head>
+  <body>
+    <form>
+        <textarea>
+        Всё приходит с опытом... Умение писать тоже...
+        </textarea>
+    </form>
+    <script>
+      tinymce.init({
+        selector: "textarea",
+        plugins:
+          "save anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss",
+        toolbar:
+          "save | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+        tinycomments_mode: "embedded",
+        tinycomments_author: "Author name",
+        mergetags_list: [
+          { value: "First.Name", title: "First Name" },
+          { value: "Email", title: "Email" },
+        ],
+      });
+    </script>
+
+    <script>
+      const button = document.createElement('button');
+      
+      button.innerText = 'Preview';
+      button.id = 'mainButton';
+      button.addEventListener('click', () => {
+        window.open('about:blank').document.documentElement.innerHTML = tinymce.activeEditor.getContent();
+      });
+
+      document.body.appendChild(button);
+    </script>
+
+    <h1><a id="todownload">Скачать</a></h1>
+    <script>
+    document.getElementById('todownload').onclick = function() {
+      let text = tinymce.activeEditor.getContent();
+      let myData = 'data:application/txt;charset=utf-8,' + encodeURIComponent(text);
+      this.href = myData;
+      this.download = 'data.html';
+}
+    </script>
+    
+    </body>
+</html>
